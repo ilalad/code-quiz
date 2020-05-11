@@ -1,41 +1,51 @@
-
-/*AS A coding bootcamp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers */
-var timer = "timer starts";
+var $startBtn = document.querySelector("#startBtn");
 var initials = "user initials";
 var score = "user scores";
+var userAnswer = "user input";
 
-
-
-
-
-## Acceptance Criteria
+// var main = document.querySelector("main");
+// main.children[0].textContent = "Coding Quiz Challenge";
 
 
 /* WHEN I click the start button */
 
-generateBtn.addEventListener("click", startGame);
+$startBtn.addEventListener("click",
+    function() {
+   console.log("click on start button")     
+})
 
+/*THEN a timer starts and I am presented with a question - PROPERTIES*/
 
+function setTime() {
+    var initalTimer = setInterval(
+        function() {
+        }
+    )
+}
+//refere to array crash course
 
-
-/*THEN a timer starts and I am presented with a question */
-
-
-
-/* WHEN I answer a question */
-
-var questions = ["Which animal never sleeps?", "Which big cat is the strongest?", "What is the fastest bird?", "What animal is extinct?", "Which creature has the largest brain in proportion to its body?"
+var arrayOfQuestions = ["Which animal never sleeps?", "Which big cat is the strongest?", "What is the fastest bird?", "What animal is extinct?", "Which creature has the largest brain in proportion to its body?"
 ]
-var correctAnswers = [
-    "Bull Frogs", "Jaguar", "Peregrine Falcon", "Carolina Parakeet", "Elephants"
+for (var i= 0; i < arrayOfQuestions.length; i++) {}
+
+/* WHEN I answer a question - VALUES FOR QUESTION'S PROPERTIES*/
+
+var arrayOfCorrectAnswers = ["Bull Frogs", "Jaguar", "Peregrine Falcon", "Carolina Parakeet", "Elephants"
 ]
+// if answer is correct//
+if (userAnswer === .correctAnswer) {
+   //add to the number of correct answers
+   score++;
+}  
+else {
+    alert ("wrong");
+}
+ 
 var wrongAnswers1 = [
     "Toads", "Snakes", "Owl" 
 ]
 var wrongAnswers2 = [
-    "Lion", "Tiger", "Leapard", 
+    "Lion", "Tiger", "Leopard", 
 ]
 var wrongAnswers3 = [
     "Vulture", "The Golden Eagle", "The White-Throatex Needletial", 
@@ -50,14 +60,20 @@ var wrongAnswers5 = [
 /*THEN I am presented with another question */
 
 
-/*WHEN I answer a question incorrectly*/
- 
 
+/*WHEN I answer a question incorrectly THEN time is subtracted from the clock use timer code from color explosion activity*/
 
-/*THEN time is subtracted from the clock use timer code from color explosion activity*/
+var timerInterval = setInterval(
+    function() {
+        secondsLeft--;
+        timerInterval.textContent = secondsLeft + "seconds left till "
 
+    }
+)
+setTime();
 
 /*WHEN all questions are answered or the timer reaches 0 THEN the game is over*/
+
 
 
 
