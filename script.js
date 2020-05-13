@@ -11,9 +11,18 @@ startClick.addEventListener("click", function () {
   setTime();
   startClick.style.display = "none";
 });
+var quiz = new Quiz(arrayOfQuestions);
+var choices = quiz.getQuestionIndex().choices;
+var i = 0;
+for (var i = 0; i < choices.length; i++) {
+  var element = document.getElementById("choice" + i);
+  element.innerHTML = choices[i];
+  guess("btn" + i, choices[i]);
+}
+showProgress();
 
 function setTime() {
-  var timeLeft = 5;
+  var timeLeft = 60;
   var timerInterval = setInterval(function () {
     timeLeft--;
     $time.textContent = "Time:" + timeLeft;
@@ -27,56 +36,74 @@ function setTime() {
 function sendMessage() {
   $time.textContent = "Game Over";
 }
-var arryOfQuestions = [
-  {
-    question: "Which animal never sleeps?",
-    correctAnswer: "Bull Frogs",
-    incorrectChoices: ["Toads", "Snakes", "Owl"],
-  },
-  {
-    question: "Which big cat is the strongest?",
-    correctAnswer: "Jaguar",
-    incorrectChoices: ["Lion", "Tiger", "Leopard"],
-  },
-  {
-    question: "What is the fastest bird?",
-    correctAnswer: "Peregrine Falcon",
-    incorrectChoices: [
-      "Vulture",
-      "The Golden Eagle",
-      "The White-Throatex Needletial",
-    ],
-  },
-  {
-    question: "What animal is extinct?",
-    correctAnswer: "Carolina Parakeet",
-    incorrectChoices: ["White Tiger", "Red Pandas", "White Lion"],
-  },
-  {
-    question: "Which creature has the largest brain in proportion to its body?",
-    correctAnswer: "Elephant",
-    incorrectChoices: ["Dolphins", "Squirrels", "Sperm Whale"],
-  },
-];
 
-// $startBtn.addEventListener("click", function(event) {
-//         event.currentTarget.setAttribute("arryOfQuestions")
+var arrayOfQuestions = [
+    new Question("Which animal never sleeps?",["Toads", "Snakes", "Owl"],"Bull Frogs"),
 
-// });
-console.log("click on start button");
-for (var i = 0; i < arryOfQuestions.length; i++) {}
-var h2El = document.createElement("h2");
-var li1 = document.createElement("li");
-var li2 = document.createElement("li");
-var li3 = document.createElement("li");
-var li4 = document.createElement("li");
+    new Question("Which big cat is the strongest?",["Lion", "Tiger", "Leopard"],"Jaguar"),
+  
+    new Question("What is the fastest bird?",["Vulture","The Golden Eagle","The White-Throatex Needletial"],"Peregrine Falcon"),
 
-//random chocies
-// h2El.textContent = [question];
-// li1.textContent = "";
-// li2.textContent = "";
-// li3.textContent = "";
-// li4.textContent = "";
+    new Question("What animal is extinct?",["White Tiger", "Red Pandas", "White Lion"],"Carolina Parakeet"),
+   
+    new Question("Which creature has the largest brain in proportion to its body?",["Dolphins", "Squirrels", "Sperm Whale", "Elephant"],"Elephant"),
+
+Quiz.prototype.getQuestionIndex = function () {
+  return this.arrayOfQuestions[this.questionIndex];
+}
+
+Quiz.prototype.isEnded = function () {
+  return this.arrayOfQuestions.length === this.questionIndex;
+}
+Quiz.prototype.guess = function () {
+  if (this.arrayOfQuestions().correctAnswer(answer)) {
+    this.score++;
+  } else {
+    var element = document.getElementById("result");
+    element.innerHTML = "Wrong!";
+  }
+  if (this.arrayOfQuestions().correctAnswer(answer)) {
+    var element = document.getElementById("result");
+    element.innerHTML = "Correct!";
+  } else {
+    var element = document.getElementById("result");
+    element.innerHTML = "Wrong!";
+  }
+  this.questionIndex++;
+};
+function Question(text, choices, answer) {
+  this.text = text;
+  this.choices = choices;
+  this.answer = answer;
+}
+Question.prototype.answer = function (choice) {
+  return choice === this.answer;
+}
+function guess(id, guess) {
+  var button = document.getElementById(id);
+  button.onclick = function () {
+    quiz.guess(guess);
+    populate();
+  };
+}
+function showProgress() {
+    var currentQuestionNumber = quiz.questionIndex + 1;
+    var element = document.getElementById('progress');
+    element.innerHTML = "question " + currentQuestionNumber + " of " + quiz.questions.length;
+}
+function addInitial() {
+    var element = $("#initial").val();
+    console.log(element)
+    return element;
+}
+function showScores(initials) {
+    var initials = addInitial();
+    var gameOverHtml = "<h1>Result</h1>";
+    gameOverHtml += "<h2 id='score'> All Done! Your final score is: " + initials + " " + quiz.score + "</h2>";
+    var element = document.getElementById("quiz");
+    element.innerHTML = gameOverHtml;
+};
+populate();
 
 /*THEN a timer starts and I am presented with a question - PROPERTIES*/
 //refere to array crash course
