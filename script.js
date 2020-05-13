@@ -1,84 +1,100 @@
-var $startBtn = document.querySelector("#startBtn");
+var $time = document.querySelector("#time");
 var initials = "user initials";
 var score = "user scores";
 var userAnswer = "user input";
-
-// var main = document.querySelector("main");
-// main.children[0].textContent = "Coding Quiz Challenge";
-
+var timeUp = "game over";
 
 /* WHEN I click the start button */
+var startClick = document.querySelector("#startBtn");
 
-$startBtn.addEventListener("click",
-    function() {
-   console.log("click on start button")     
-})
-
-/*THEN a timer starts and I am presented with a question - PROPERTIES*/
+startClick.addEventListener("click", function () {
+  setTime();
+  startClick.style.display = "none";
+});
 
 function setTime() {
-    var initalTimer = setInterval(
-        function() {
-        }
-    )
+  var timeLeft = 5;
+  var timerInterval = setInterval(function () {
+    timeLeft--;
+    $time.textContent = "Time:" + timeLeft;
+    if (timeLeft === 0) {
+      clearInterval(timerInterval);
+      sendMessage();
+    }
+  }, 1000);
 }
+
+function sendMessage() {
+  $time.textContent = "Game Over";
+}
+var arryOfQuestions = [
+  {
+    question: "Which animal never sleeps?",
+    correctAnswer: "Bull Frogs",
+    incorrectChoices: ["Toads", "Snakes", "Owl"],
+  },
+  {
+    question: "Which big cat is the strongest?",
+    correctAnswer: "Jaguar",
+    incorrectChoices: ["Lion", "Tiger", "Leopard"],
+  },
+  {
+    question: "What is the fastest bird?",
+    correctAnswer: "Peregrine Falcon",
+    incorrectChoices: [
+      "Vulture",
+      "The Golden Eagle",
+      "The White-Throatex Needletial",
+    ],
+  },
+  {
+    question: "What animal is extinct?",
+    correctAnswer: "Carolina Parakeet",
+    incorrectChoices: ["White Tiger", "Red Pandas", "White Lion"],
+  },
+  {
+    question: "Which creature has the largest brain in proportion to its body?",
+    correctAnswer: "Elephant",
+    incorrectChoices: ["Dolphins", "Squirrels", "Sperm Whale"],
+  },
+];
+
+// $startBtn.addEventListener("click", function(event) {
+//         event.currentTarget.setAttribute("arryOfQuestions")
+
+// });
+console.log("click on start button");
+for (var i = 0; i < arryOfQuestions.length; i++) {}
+var h2El = document.createElement("h2");
+var li1 = document.createElement("li");
+var li2 = document.createElement("li");
+var li3 = document.createElement("li");
+var li4 = document.createElement("li");
+
+//random chocies
+// h2El.textContent = [question];
+// li1.textContent = "";
+// li2.textContent = "";
+// li3.textContent = "";
+// li4.textContent = "";
+
+/*THEN a timer starts and I am presented with a question - PROPERTIES*/
 //refere to array crash course
-
-var arrayOfQuestions = ["Which animal never sleeps?", "Which big cat is the strongest?", "What is the fastest bird?", "What animal is extinct?", "Which creature has the largest brain in proportion to its body?"
-]
-for (var i= 0; i < arrayOfQuestions.length; i++) {}
-
 /* WHEN I answer a question - VALUES FOR QUESTION'S PROPERTIES*/
 
-var arrayOfCorrectAnswers = ["Bull Frogs", "Jaguar", "Peregrine Falcon", "Carolina Parakeet", "Elephants"
-]
 // if answer is correct//
-if (userAnswer === .correctAnswer) {
-   //add to the number of correct answers
-   score++;
-}  
-else {
-    alert ("wrong");
-}
- 
-var wrongAnswers1 = [
-    "Toads", "Snakes", "Owl" 
-]
-var wrongAnswers2 = [
-    "Lion", "Tiger", "Leopard", 
-]
-var wrongAnswers3 = [
-    "Vulture", "The Golden Eagle", "The White-Throatex Needletial", 
-]
-var wrongAnswers4 = [
-    "White Tiger", "TRed Pandas", "White Lion", 
-]
-var wrongAnswers5 = [
-    "Dolphins", "Squirrels", "Sperm Whale", 
-]
+//if (userAnswer === .correctAnswer) {
+//add to the number of correct answers
+//    score++;
+// }
+// else {
+//     alert ("wrong");
+// }
 
 /*THEN I am presented with another question */
 
-
-
 /*WHEN I answer a question incorrectly THEN time is subtracted from the clock use timer code from color explosion activity*/
-
-var timerInterval = setInterval(
-    function() {
-        secondsLeft--;
-        timerInterval.textContent = secondsLeft + "seconds left till "
-
-    }
-)
-setTime();
 
 /*WHEN all questions are answered or the timer reaches 0 THEN the game is over*/
 
-
-
-
-/*WHEN the game is over display high score*/
-
-
-
-/*THEN I can save my initials and score */
+// WHEN the game is over display high score THEN I can save my initials and score,//
