@@ -9,28 +9,37 @@
   <body>
     <nav>View Highscores</nav>
     <nav id="time">Time</nav>
-    <div class="wrapper">
+    <div id="quizContainer" class="container">
       <h1>Coding Quiz Challenge</h1>
       <p>
         Try to answer the following questions within the time limit. Keep in
         mind that incorrect answers will penalize your score time by ten
         seconds!
       </p>
+
+      <div id="question-container" class="hide"></div>
+      <div id="question" class="question"></div>
+
+      <label class="choice"
+        ><input type="radio" name="choice" value="1" /> <v id="cho1"></v
+      ></label>
+      <label class="choice"
+        ><input type="radio" name="choice" value="2" /> <span id="cho2"></span
+      ></label>
+      <label class="choice"
+        ><input type="radio" name="choice" value="3" /> <span id="cho3"></span
+      ></label>
+      <label class="choice"
+        ><input type="radio" name="choice" value="4" /> <span id="cho4"></span
+      ></label>
+      <br />
       <button id="startBtn">Start Quiz</button>
-      <div id= "quiz">
-      <p id= "question"></p>
-      <div class="buttons">
-        <button id="btn0"><span id='choice0'></span></button>
-        <button id="btn1"><span id='choice1'></span></button>
-        <button id="btn2"><span id='choice2'></span></button>
-        <button id="btn3"><span id='choice3'></span></button>
-      </div>
-      </div>
+      <button id="nextButton" class="next-btn" onclick="loadNextQuestion();">
+        Next Question
+      </button>
     </div>
+    <div id="result" class="container result" style="display: none;"></div>
     <script src="script.js"></script>
-    <footer> <p id="result">
-    </p>
-  </div>
-    </footer>  
+    <footer><p id="result"></p></footer>
   </body>
 </html>
